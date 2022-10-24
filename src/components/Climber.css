@@ -1,0 +1,27 @@
+.climber{
+    transform: translate(900px, -20px);
+}
+.trans{
+    font-size: 20px; 
+}
+.high{
+    font-size: 20px;
+    transform: translate(-55px, -75px);
+}
+.mid{
+    font-size: 20px;
+    transform: translate(-105px, -150px);
+}
+.low{
+    font-size: 20px;
+    transform: translate(-155px, -225px);
+}
+.climbinc{
+    font-size: 20px;
+    transform: translateX(10px);
+    
+}
+.climbdec{
+    font-size: 20px;
+    transform: translateX(-10px);
+}

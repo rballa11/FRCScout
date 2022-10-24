@@ -1,0 +1,7 @@
+
+.teleop{
+    transform: translate(30px, 150px);
+}
+.teleopmissed{
+    transform: translate(-10px);
+}
