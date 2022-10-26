@@ -6,6 +6,8 @@ import Information from "../components/Information";
 import Teleop from "../components/Teleop";
 import Climber from "../components/Climber";
 import Submit from "../components/Submit";
+import { initializeApp } from 'firebase/app';
+
 
 import "./Scout.css";
 class Scout extends Component{
@@ -31,6 +33,7 @@ class Scout extends Component{
         climbertime: 0,
 
     } 
+    
     render(){
         return(
             <div>
@@ -55,6 +58,19 @@ class Scout extends Component{
 
             </div>
         );
+    }
+    firebaseconnect = () => {
+        const firebaseconfig = {
+
+        }
+        const app = initializeApp(firebaseconfig);
+        
+        async function getCities(db){
+            const citiesCol = collection(db, 'cities');
+            const citySnapshot = await getDocs(citiesCol);
+            const cityList = citySnapshot.docs.map(doc => doc.data());
+            return cityList;
+        }
     }
     autolowerdecrement = () => {
         this.setState({autolowerhubshoot: this.state.autolowerhubshoot-1});
