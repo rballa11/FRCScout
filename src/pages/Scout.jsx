@@ -13,6 +13,8 @@ import {db, app, submitReport} from "../firebase";
 import "./Scout.css";
 class Scout extends Component{
     state = {
+        match: "",
+        team: 0,
         autolowerhubshoot: 0,
         autohigherhubshoot: 0,
         automissed: 0,
@@ -38,6 +40,12 @@ class Scout extends Component{
     render(){
         return(
             <div>
+                <label className="matchnumber">
+                Match Number<input type = "text" value= {this.state.match} onChange = {(e)=>this.matchChange(e)}/>
+            </label>
+            <label className = "teamnumber">
+                Team Number<input type = "text" value = {this.state.team} onChange = {(e)=>this.teamChange(e)}/>
+            </label>
             <Information alliancecolor = {this.state.alliancestyle} alliance = {this.alliancetoggle}/>
             <Taxi color = {this.state.taxistyle} colorfunc = {this.autotaxitoggle}/>
             <Auto autolowerhub = {this.state.autolowerhubshoot} autoupperhub = {this.state.autohigherhubshoot} 
@@ -62,6 +70,14 @@ class Scout extends Component{
     }
     submitReport = () => {
         
+    }
+    matchChange = (event) => {
+        this.setState({match: event.target.value});
+        console.log(this.state.match);
+    }
+    teamChange = (event) => {
+        this.setState({team: event.target.value});
+        console.log(this.state.team);
     }
     autolowerdecrement = () => {
         this.setState({autolowerhubshoot: this.state.autolowerhubshoot-1});
