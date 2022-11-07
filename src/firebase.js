@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { Firestore } from 'firebase/firestore/lite';
-import { doc, setDoc } from "firebase/firestore"; 
+import { addDoc, doc, setDoc } from "firebase/firestore"; 
 
     const firebaseconfig = {
         apiKey: "AIzaSyCURqq513lRNxcy-kkAGUav6oB3MLHzq28",
@@ -15,8 +15,20 @@ import { doc, setDoc } from "firebase/firestore";
     };
     export const app = initializeApp(firebaseconfig);
     export const db = getFirestore(app);
-    export const submitReport = (report) =>{
+    const dbref = collection(db, "Data");
 
+    export const submitReport = (report) =>{
+      console.log('called');
+      
+      addDoc(dbref, report)
+      .then(docRef => {
+        console.log("data uploaded");
+      })
+      .catch( error => {
+        console.log(error);
+      })
+      
+      //use setDoc to set the id of the document to the match number
     }
 
 

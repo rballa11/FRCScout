@@ -63,13 +63,35 @@ class Scout extends Component{
             transversal = {this.transversaltoggle} transversalstyle = {this.state.transversalstyle}
             climberincrement = {this.climberincrement} climberdecrement = {this.climberdecrement} 
             climbertime = {this.state.climbertime}/>
-           <input type="submit" value="Submit" className = "f"/>
+           <input type="submit" value="Submit" className = "f" onClick = {this.submitReport}/>
 
             </div>
         );
     }
     submitReport = () => {
-        
+        submitReport(this.state);
+        this.setState({match: "",
+        team: 0,
+        autolowerhubshoot: 0,
+        autohigherhubshoot: 0,
+        automissed: 0,
+        taxi: false,
+        taxistyle: "#FF0000",
+        alliance: false,
+        alliancestyle: "#FF0000",
+        teleophigher: 0,
+        teleoplower: 0,
+        teleopmissed: 0,
+        low: false,
+        lowstyle: "#FF0000",
+        mid: false,
+        midstyle: "#FF0000",
+        high: false,
+        highstyle: "#FF0000",
+        transversal: true,
+        transversalstyle: "#FF0000",
+        climbertime: 0
+    });
     }
     matchChange = (event) => {
         this.setState({match: event.target.value});
