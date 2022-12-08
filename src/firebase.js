@@ -1,8 +1,8 @@
 //plan to import the variables  into scout
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { Firestore } from 'firebase/firestore/lite';
-import { addDoc, doc, setDoc } from "firebase/firestore"; 
+import { getFirestore, collection } from 'firebase/firestore/lite';
+
+import { doc, setDoc } from "firebase/firestore/lite"; 
 
     const firebaseconfig = {
         apiKey: "AIzaSyCURqq513lRNxcy-kkAGUav6oB3MLHzq28",
@@ -17,34 +17,38 @@ import { addDoc, doc, setDoc } from "firebase/firestore";
     export const db = getFirestore(app);
     const dbref = collection(db, "Data");
 
-    export const submitReport = (report) =>{
+    export const submitReport = async (report) =>{
       console.log('called');
+      const repor = report;
+      const {match} = report;
       
-      addDoc(dbref, report)
-      .then(docRef => {
-        console.log("data uploaded");
-      })
-      .catch( error => {
+      
+      
+      console.log(match);
+      var docReference = doc( dbref, "/"+match);
+      //await addDoc(dbref, repor);
+      console.log("doc");
+     await setDoc(docReference, repor);
+    console.log("document added");
+    /*
+    setDoc(dbref, report)
+    .then(docRef => {
+        console.log("Document has been added successfully");
+    })
+    .catch(error => {
         console.log(error);
-      })
-      
+    })
+    */
       //use setDoc to set the id of the document to the match number
-    }
+    };
 
 
     
-    
-    async function getCities(db){
-        const citiesCol = collection(db, 'cities');
-        const citySnapshot = await getDocs(citiesCol);
-        const cityList = citySnapshot.docs.map(doc => doc.data());
-        return cityList;
-    }
 
 /*
 rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents {
+  match /databases/{database}/documents {col
     match /{document=**} {
       allow read, write: if false;
     }

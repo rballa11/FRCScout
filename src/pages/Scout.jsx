@@ -5,8 +5,7 @@ import Taxi from "../components/Taxi";
 import Information from "../components/Information";
 import Teleop from "../components/Teleop";
 import Climber from "../components/Climber";
-import Submit from "../components/Submit";
-import {db, app, submitReport} from "../firebase";
+import {submitReport} from "../firebase";
 
 
 
@@ -69,7 +68,8 @@ class Scout extends Component{
         );
     }
     submitReport = () => {
-        submitReport(this.state);
+        const report = this.state;
+        submitReport(report);
         this.setState({match: "",
         team: 0,
         autolowerhubshoot: 0,
@@ -95,11 +95,11 @@ class Scout extends Component{
     }
     matchChange = (event) => {
         this.setState({match: event.target.value});
-        console.log(this.state.match);
+        
     }
     teamChange = (event) => {
         this.setState({team: event.target.value});
-        console.log(this.state.team);
+        
     }
     autolowerdecrement = () => {
         this.setState({autolowerhubshoot: this.state.autolowerhubshoot-1});
@@ -116,7 +116,7 @@ class Scout extends Component{
         this.setState({autohigherhubshoot: this.state.autohigherhubshoot+1});
     }
     automissedincrement = () => {
-        console.log('a');
+        
         this.setState({automissed: this.state.automissed+1});
 
     }
@@ -136,13 +136,13 @@ class Scout extends Component{
         this.setState({teleopmissed: this.state.teleopmissed+1});
     }
     teleopmisseddecrement = () => {
-        console.log("a");
+        
         this.setState({teleopmissed: this.state.teleopmissed-1});
     }
     automisseddecrement = () => {
         
         this.setState({automissed: this.state.automissed-1});
-        console.log(this.state.automissed);
+        
     }
     climberdecrement = () => {
         
@@ -156,7 +156,7 @@ class Scout extends Component{
     }
 
     autotaxitoggle = () => {
-        console.log(this.state.taxi);
+        
         this.setState({taxi: !this.state.taxi});
         if(this.state.taxi){
             this.setState({taxistyle: "#008000"});
@@ -165,7 +165,7 @@ class Scout extends Component{
         }  
     }
     alliancetoggle = () => {
-        console.log(this.state.alliance);
+        
         this.setState({alliance: !this.state.alliance});
         if(this.state.alliance){
             this.setState({alliancestyle: "	#0000FF"});
@@ -174,7 +174,7 @@ class Scout extends Component{
         }   
     }
     lowtoggle = () => {
-        console.log(this.state.low);
+        
         this.setState({low: !this.state.low});
         if(this.state.low){
             this.setState({lowstyle: "	#008000"});
@@ -183,7 +183,7 @@ class Scout extends Component{
         }    
     }
     midtoggle = () => {
-        console.log(this.state.mid);
+        
         this.setState({mid: !this.state.mid});
         if(this.state.mid){
             this.setState({midstyle: "	#008000"});
@@ -192,7 +192,7 @@ class Scout extends Component{
         }
     }
     hightoggle = () => {
-        console.log(this.state.high);
+        
         this.setState({high: !this.state.high});
         if(this.state.high){
             this.setState({highstyle: "	#008000"});
@@ -201,7 +201,7 @@ class Scout extends Component{
         }
     }
     transversaltoggle = () => {
-        console.log(this.state.transversal);
+       
         this.setState({transversal: !this.state.transversal});
         if(this.state.transversal){
             this.setState({transversalstyle: "	#008000"});
