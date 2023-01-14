@@ -5,6 +5,8 @@ import  ReactDOM  from "react-dom";
 import reportWebVitals from './reportWebVitals';
 import Home from "./pages/Home";
 import Scout from "./pages/Scout";
+import Analytics from './pages/Analytics';
+import Team from './pages/Team';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
@@ -13,6 +15,8 @@ ReactDOM.render(
     <Routes>
     <Route path = "/" element = {<Home />} />
     <Route path = "/Scout" element = {<Scout />} />
+    <Route path = "/Analytics" element = {<Analytics />} />
+    <Route path = "/Analytics/Team" element = {<Team />} />
     </Routes>
 </Router>,
 

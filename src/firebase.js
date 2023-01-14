@@ -1,6 +1,6 @@
 //plan to import the variables  into scout
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, query, where, getDoc } from 'firebase/firestore/lite';
 
 import { doc, setDoc } from "firebase/firestore/lite"; 
 
@@ -16,16 +16,17 @@ import { doc, setDoc } from "firebase/firestore/lite";
     export const app = initializeApp(firebaseconfig);
     export const db = getFirestore(app);
     const dbref = collection(db, "Data");
+    const docsnap = 0;
 
     export const submitReport = async (report) =>{
       console.log('called');
       const repor = report;
-      const {match} = report;
+      const {team} = report;
       
       
       
-      console.log(match);
-      var docReference = doc( dbref, "/"+match);
+      console.log(team);
+      var docReference = doc( dbref, "/"+team);
       //await addDoc(dbref, repor);
       console.log("doc");
      await setDoc(docReference, repor);
@@ -41,7 +42,34 @@ import { doc, setDoc } from "firebase/firestore/lite";
     */
       //use setDoc to set the id of the document to the match number
     };
+    export const hashmap = new Map();
+    export const fetchData = async() =>{
+      const q = query(dbref, where ("match", ">=", 1))
+      const matchdocs = await getDocs(q)
+      matchdocs.forEach((doc) => {
+        hashmap.set(doc["match"], doc)
+      })}
+    
+    export const getAvailability  = async(teamnum) =>{
+      const docref = doc(db, dbref, teamnum)
+      docsnap = await getDoc(docref)
 
+      if(docsnap.exists()){
+        
+        return true;
+      }else{
+        
+        return false;
+      }
+      
+    }
+
+    export const getData = (teamnums) =>{
+      if(getAvailability(teamnums))
+        return docsnap
+      else
+        return;
+    }
 
     
 
