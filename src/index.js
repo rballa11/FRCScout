@@ -15,7 +15,6 @@ ReactDOM.render(
     <Routes>
     <Route path = "/" element = {<Home />} />
     <Route path = "/Scout" element = {<Scout />} />
-    <Route path = "/Analytics" element = {<Analytics />} />
     <Route path = "/Analytics/Team" element = {<Team />} />
     </Routes>
 </Router>,
