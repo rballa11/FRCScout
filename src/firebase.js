@@ -5,13 +5,7 @@ import { getFirestore, collection, getDocs, query, where, getDoc } from 'firebas
 import { doc, setDoc } from "firebase/firestore/lite"; 
 
     const firebaseconfig = {
-        apiKey: "AIzaSyCURqq513lRNxcy-kkAGUav6oB3MLHzq28",
-        authDomain: "mytorquescout.firebaseapp.com",
-        projectId: "mytorquescout",
-        storageBucket: "mytorquescout.appspot.com",
-        messagingSenderId: "811416881060",
-        appId: "1:811416881060:web:0dfec845c59d93315d2331",
-        measurementId: "G-79FW4R9FDW"
+        
     };
     export const app = initializeApp(firebaseconfig);
     export const db = getFirestore(app);
